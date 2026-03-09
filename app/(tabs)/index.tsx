@@ -7,6 +7,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { useTaskStore } from "@/store/useTaskStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -105,6 +106,8 @@ const Home = () => {
         onClose={() => setModalVisible(false)}
         onAddTask={addTask}
       />
+
+      <StatusBar style="dark" />
     </Wrapper>
   );
 };

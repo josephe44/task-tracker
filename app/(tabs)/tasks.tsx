@@ -67,7 +67,7 @@ const Tasks = () => {
           />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search"
+            placeholder="Search by title"
             placeholderTextColor={Colors.textSecondary}
             value={searchQuery}
             onChangeText={setSearchQuery}
