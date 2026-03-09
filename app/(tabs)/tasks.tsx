@@ -124,10 +124,10 @@ const styles = StyleSheet.create({
     color: Colors.textPrimary,
   },
   backButton: {
-    padding: 8,
+    paddingTop: 8,
   },
   addButton: {
-    padding: 8,
+    paddingTop: 8,
   },
   container: {
     flex: 1,
