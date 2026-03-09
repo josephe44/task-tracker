@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# Task Tracker App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple mobile application to track tasks, built with React Native, Expo, and TypeScript.
 
-## Get started
+## Setup Instructions
 
-1. Install dependencies
+1.  **Install dependencies**:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
-2. Start the app
+2.  **Start the app**:
 
-   ```bash
-   npx expo start
-   ```
+    ```bash
+    npx expo start
+    ```
 
-In the output, you'll find options to open the app in a
+3.  **Run on device/emulator**:
+    - Press `a` for Android emulator.
+    - Press `i` for iOS simulator.
+    - Scan the QR code with the Expo Go app on your physical device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Architectural Decisions & Libraries
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Tech Stack
 
-## Get a fresh project
+- **React Native with Expo**: Chosen for rapid development, ease of setup, and excellent cross-platform support.
+- **TypeScript**: Used throughout the project to ensure type safety, improve code quality, and provide better developer tooling.
+- **Expo Router**: Utilized for file-based routing, which simplifies navigation structure and deep linking.
 
-When you're ready, run:
+### State Management & Persistence
 
-```bash
-npm run reset-project
-```
+- **Zustand**: Selected for global state management. It was chosen over React Context because:
+  - It eliminates unnecessary re-renders by allowing components to subscribe only to the specific state slices they need.
+  - It has a simpler, cleaner API with less boilerplate (no Provider wrapping hell).
+  - It has built-in middleware for persistence.
+- **AsyncStorage**: Used in conjunction with Zustand's `persist` middleware to automatically save and load tasks from local storage, ensuring data persistence across app restarts.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### UI/UX Design
 
-## Learn more
+- **Component-Based Architecture**: The UI is broken down into small, reusable components (`TaskItem`, `DashboardStats`, `AddTaskModal`, `FAB`) to promote maintainability and separation of concerns.
+- **Styling**: A custom theme system (`constants/theme.ts`) is used to maintain consistent colors (`#5452F6` primary purple) and typography (`BricolageGrotesque`) across the app.
+- **User Feedback**:
+  - **Empty States**: Clear messaging when there are no tasks in progress or completed.
+  - **Validation**: Prevents creation of empty tasks.
+  - **Haptics**: Subtle feedback on interactions (like tab presses).
+  - **Animations**: Smooth modal transitions and layout updates.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Future Improvements
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+If I had more time, I would implement:
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1.  **Task Editing**: Allow users to tap on a task to edit its title and description.
+2.  **Categories/Tags**: Add the ability to categorize tasks (e.g., Work, Personal, Shopping) with color-coded tags.
+3.  **Due Dates & Reminders**: Integrate local notifications to remind users of upcoming task deadlines.
+4.  **Drag & Drop Reordering**: Allow users to manually reorder their task list.
+5.  **Dark Mode Support**: Fully implement a dark theme toggle using the existing theme infrastructure.
+6.  **Unit & E2E Tests**: Add Jest unit tests for the store logic and Maestro/Detox tests for critical user flows.
